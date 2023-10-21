@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  HomeVC.swift
 //  Nominations
 //
 //  Created by Wojtek on 21/10/2023.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class HomeVC: UIViewController {
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
