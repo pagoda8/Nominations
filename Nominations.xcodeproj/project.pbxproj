@@ -22,6 +22,11 @@
 		2E7B5AAB2AE45A3700ED4772 /* Poppins-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2E7B5AA42AE45A3700ED4772 /* Poppins-SemiBold.ttf */; };
 		2E7B5AAF2AE4635E00ED4772 /* HeaderBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E7B5AAE2AE4635E00ED4772 /* HeaderBarView.swift */; };
 		2E7B5AB32AE4688000ED4772 /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E7B5AB22AE4688000ED4772 /* Font.swift */; };
+		2E7B5AB92AE58FA900ED4772 /* NominationsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E7B5AB82AE58FA900ED4772 /* NominationsHeaderView.swift */; };
+		2E7B5ABB2AE5B51600ED4772 /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E7B5ABA2AE5B51600ED4772 /* PrimaryButton.swift */; };
+		2E7B5ABD2AE5BB8600ED4772 /* FooterBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E7B5ABC2AE5BB8600ED4772 /* FooterBarView.swift */; };
+		2E7B5ABF2AE5C3EA00ED4772 /* SecondaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E7B5ABE2AE5C3EA00ED4772 /* SecondaryButton.swift */; };
+		2E7B5AC12AE5CB2C00ED4772 /* NoNominationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E7B5AC02AE5CB2C00ED4772 /* NoNominationsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +46,11 @@
 		2E7B5AA42AE45A3700ED4772 /* Poppins-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-SemiBold.ttf"; sourceTree = "<group>"; };
 		2E7B5AAE2AE4635E00ED4772 /* HeaderBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderBarView.swift; sourceTree = "<group>"; };
 		2E7B5AB22AE4688000ED4772 /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
+		2E7B5AB82AE58FA900ED4772 /* NominationsHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NominationsHeaderView.swift; sourceTree = "<group>"; };
+		2E7B5ABA2AE5B51600ED4772 /* PrimaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButton.swift; sourceTree = "<group>"; };
+		2E7B5ABC2AE5BB8600ED4772 /* FooterBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterBarView.swift; sourceTree = "<group>"; };
+		2E7B5ABE2AE5C3EA00ED4772 /* SecondaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondaryButton.swift; sourceTree = "<group>"; };
+		2E7B5AC02AE5CB2C00ED4772 /* NoNominationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoNominationsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,6 +139,11 @@
 			isa = PBXGroup;
 			children = (
 				2E7B5AAE2AE4635E00ED4772 /* HeaderBarView.swift */,
+				2E7B5AB82AE58FA900ED4772 /* NominationsHeaderView.swift */,
+				2E7B5AC02AE5CB2C00ED4772 /* NoNominationsView.swift */,
+				2E7B5ABC2AE5BB8600ED4772 /* FooterBarView.swift */,
+				2E7B5ABA2AE5B51600ED4772 /* PrimaryButton.swift */,
+				2E7B5ABE2AE5C3EA00ED4772 /* SecondaryButton.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -224,9 +239,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2E7B5ABF2AE5C3EA00ED4772 /* SecondaryButton.swift in Sources */,
+				2E7B5AC12AE5CB2C00ED4772 /* NoNominationsView.swift in Sources */,
 				2E32359A2AE43B7100664D97 /* HomeVC.swift in Sources */,
 				2E3235962AE43B7100664D97 /* AppDelegate.swift in Sources */,
 				2E7B5AB32AE4688000ED4772 /* Font.swift in Sources */,
+				2E7B5AB92AE58FA900ED4772 /* NominationsHeaderView.swift in Sources */,
+				2E7B5ABB2AE5B51600ED4772 /* PrimaryButton.swift in Sources */,
+				2E7B5ABD2AE5BB8600ED4772 /* FooterBarView.swift in Sources */,
 				2E3235982AE43B7100664D97 /* SceneDelegate.swift in Sources */,
 				2E7B5AAF2AE4635E00ED4772 /* HeaderBarView.swift in Sources */,
 			);

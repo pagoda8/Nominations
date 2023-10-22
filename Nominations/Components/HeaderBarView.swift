@@ -48,13 +48,17 @@ class HeaderBarView: UIView {
 			label.text = title
 			label.font = UIFont.style.navigationBar
 			label.textColor = .white
+			label.textAlignment = .center
+			label.lineBreakMode = .byWordWrapping
+			label.numberOfLines = 0
 			label.translatesAutoresizingMaskIntoConstraints = false
 			contentView.addSubview(label)
 			
 			NSLayoutConstraint.activate([
 				label.topAnchor.constraint(equalTo: contentView.topAnchor),
 				label.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-				label.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+				label.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+				label.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
 			])
 		}
 		else {
@@ -76,8 +80,8 @@ class HeaderBarView: UIView {
 		self.contentViewTopConstraint?.isActive = true
 		NSLayoutConstraint.activate([
 			contentView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -20),
-			contentView.leadingAnchor.constraint(equalTo: leadingAnchor),
-			contentView.trailingAnchor.constraint(equalTo: trailingAnchor),
+			contentView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
+			contentView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
 		])
 	}
 	

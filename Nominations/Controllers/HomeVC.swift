@@ -17,6 +17,35 @@ class HomeVC: UIViewController {
 	private func setupUI() {
 		view.backgroundColor = .cubeLightGrey
 		
+		let scrollView = UIScrollView()
+		scrollView.translatesAutoresizingMaskIntoConstraints = false
+		
+		let stackView = UIStackView()
+		stackView.axis = .vertical
+		stackView.spacing = 0
+		stackView.translatesAutoresizingMaskIntoConstraints = false
+		
+		let nominationsHeader = NominationsHeaderView()
+		stackView.addArrangedSubview(nominationsHeader)
+		
+		let noNominationsView = NoNominationsView()
+		stackView.addArrangedSubview(noNominationsView)
+		
+		scrollView.addSubview(stackView)
+		NSLayoutConstraint.activate([
+			stackView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+			stackView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+			stackView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+			stackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+			stackView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
+		])
+		
+		view.addSubview(scrollView)
+		NSLayoutConstraint.activate([
+			scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+			scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+		])
+		
 		let header = HeaderBarView()
 		header.translatesAutoresizingMaskIntoConstraints = false
 		view.addSubview(header)
@@ -25,7 +54,21 @@ class HomeVC: UIViewController {
 			header.topAnchor.constraint(equalTo: view.topAnchor),
 			header.leadingAnchor.constraint(equalTo: view.leadingAnchor),
 			header.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+			header.bottomAnchor.constraint(equalTo: scrollView.topAnchor),
 		])
+		
+		let footer = FooterBarView()
+		footer.translatesAutoresizingMaskIntoConstraints = false
+		view.addSubview(footer)
+		NSLayoutConstraint.activate([
+			footer.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+			footer.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+			footer.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+			footer.topAnchor.constraint(equalTo: scrollView.bottomAnchor),
+		])
+		
+		let button = PrimaryButton(title: "Create new nomination")
+		footer.addButton(button)
 	}
 }
 
