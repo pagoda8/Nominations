@@ -27,6 +27,10 @@
 		2E7B5ABD2AE5BB8600ED4772 /* FooterBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E7B5ABC2AE5BB8600ED4772 /* FooterBarView.swift */; };
 		2E7B5ABF2AE5C3EA00ED4772 /* SecondaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E7B5ABE2AE5C3EA00ED4772 /* SecondaryButton.swift */; };
 		2E7B5AC12AE5CB2C00ED4772 /* NoNominationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E7B5AC02AE5CB2C00ED4772 /* NoNominationsView.swift */; };
+		2E7B887E2AE6B4F200B4099B /* CubeAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E7B887D2AE6B4F200B4099B /* CubeAPIManager.swift */; };
+		2E7B88802AE6C15000B4099B /* MainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E7B887F2AE6C15000B4099B /* MainManager.swift */; };
+		2E7B88852AE6F1CD00B4099B /* LoginErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E7B88842AE6F1CD00B4099B /* LoginErrorView.swift */; };
+		2E7B88882AE709AD00B4099B /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 2E7B88872AE709AD00B4099B /* Alamofire */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,6 +55,9 @@
 		2E7B5ABC2AE5BB8600ED4772 /* FooterBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterBarView.swift; sourceTree = "<group>"; };
 		2E7B5ABE2AE5C3EA00ED4772 /* SecondaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondaryButton.swift; sourceTree = "<group>"; };
 		2E7B5AC02AE5CB2C00ED4772 /* NoNominationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoNominationsView.swift; sourceTree = "<group>"; };
+		2E7B887D2AE6B4F200B4099B /* CubeAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CubeAPIManager.swift; sourceTree = "<group>"; };
+		2E7B887F2AE6C15000B4099B /* MainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainManager.swift; sourceTree = "<group>"; };
+		2E7B88842AE6F1CD00B4099B /* LoginErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginErrorView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +66,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2E7B5A9A2AE4568D00ED4772 /* CubeFoundation in Frameworks */,
+				2E7B88882AE709AD00B4099B /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -88,6 +96,7 @@
 				2E3235972AE43B7100664D97 /* SceneDelegate.swift */,
 				2E7B5AAD2AE4631500ED4772 /* Components */,
 				2E7B5AAC2AE4630300ED4772 /* Controllers */,
+				2E7B887C2AE6B4CC00B4099B /* Managers */,
 				2E7B5A9B2AE45A3700ED4772 /* Fonts */,
 				2E7B5AB12AE4685700ED4772 /* Extensions */,
 				2E32359E2AE43B7400664D97 /* Assets.xcassets */,
@@ -138,12 +147,9 @@
 		2E7B5AAD2AE4631500ED4772 /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				2E7B5AAE2AE4635E00ED4772 /* HeaderBarView.swift */,
-				2E7B5AB82AE58FA900ED4772 /* NominationsHeaderView.swift */,
-				2E7B5AC02AE5CB2C00ED4772 /* NoNominationsView.swift */,
-				2E7B5ABC2AE5BB8600ED4772 /* FooterBarView.swift */,
-				2E7B5ABA2AE5B51600ED4772 /* PrimaryButton.swift */,
-				2E7B5ABE2AE5C3EA00ED4772 /* SecondaryButton.swift */,
+				2E7B88812AE6F12500B4099B /* Bars */,
+				2E7B88822AE6F12F00B4099B /* Views */,
+				2E7B88832AE6F13C00B4099B /* Buttons */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -154,6 +160,43 @@
 				2E7B5AB22AE4688000ED4772 /* Font.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		2E7B887C2AE6B4CC00B4099B /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				2E7B887D2AE6B4F200B4099B /* CubeAPIManager.swift */,
+				2E7B887F2AE6C15000B4099B /* MainManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		2E7B88812AE6F12500B4099B /* Bars */ = {
+			isa = PBXGroup;
+			children = (
+				2E7B5AAE2AE4635E00ED4772 /* HeaderBarView.swift */,
+				2E7B5ABC2AE5BB8600ED4772 /* FooterBarView.swift */,
+			);
+			path = Bars;
+			sourceTree = "<group>";
+		};
+		2E7B88822AE6F12F00B4099B /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				2E7B5AB82AE58FA900ED4772 /* NominationsHeaderView.swift */,
+				2E7B5AC02AE5CB2C00ED4772 /* NoNominationsView.swift */,
+				2E7B88842AE6F1CD00B4099B /* LoginErrorView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		2E7B88832AE6F13C00B4099B /* Buttons */ = {
+			isa = PBXGroup;
+			children = (
+				2E7B5ABA2AE5B51600ED4772 /* PrimaryButton.swift */,
+				2E7B5ABE2AE5C3EA00ED4772 /* SecondaryButton.swift */,
+			);
+			path = Buttons;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -174,6 +217,7 @@
 			name = Nominations;
 			packageProductDependencies = (
 				2E7B5A992AE4568D00ED4772 /* CubeFoundation */,
+				2E7B88872AE709AD00B4099B /* Alamofire */,
 			);
 			productName = Nominations;
 			productReference = 2E3235922AE43B7100664D97 /* Nominations.app */;
@@ -205,6 +249,7 @@
 			mainGroup = 2E3235892AE43B7100664D97;
 			packageReferences = (
 				2E7B5A982AE4568D00ED4772 /* XCRemoteSwiftPackageReference "cubefoundation-ios" */,
+				2E7B88862AE709AD00B4099B /* XCRemoteSwiftPackageReference "Alamofire" */,
 			);
 			productRefGroup = 2E3235932AE43B7100664D97 /* Products */;
 			projectDirPath = "";
@@ -239,13 +284,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2E7B88802AE6C15000B4099B /* MainManager.swift in Sources */,
 				2E7B5ABF2AE5C3EA00ED4772 /* SecondaryButton.swift in Sources */,
 				2E7B5AC12AE5CB2C00ED4772 /* NoNominationsView.swift in Sources */,
 				2E32359A2AE43B7100664D97 /* HomeVC.swift in Sources */,
+				2E7B887E2AE6B4F200B4099B /* CubeAPIManager.swift in Sources */,
 				2E3235962AE43B7100664D97 /* AppDelegate.swift in Sources */,
 				2E7B5AB32AE4688000ED4772 /* Font.swift in Sources */,
 				2E7B5AB92AE58FA900ED4772 /* NominationsHeaderView.swift in Sources */,
 				2E7B5ABB2AE5B51600ED4772 /* PrimaryButton.swift in Sources */,
+				2E7B88852AE6F1CD00B4099B /* LoginErrorView.swift in Sources */,
 				2E7B5ABD2AE5BB8600ED4772 /* FooterBarView.swift in Sources */,
 				2E3235982AE43B7100664D97 /* SceneDelegate.swift in Sources */,
 				2E7B5AAF2AE4635E00ED4772 /* HeaderBarView.swift in Sources */,
@@ -473,6 +521,14 @@
 				kind = branch;
 			};
 		};
+		2E7B88862AE709AD00B4099B /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.8.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -480,6 +536,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 2E7B5A982AE4568D00ED4772 /* XCRemoteSwiftPackageReference "cubefoundation-ios" */;
 			productName = CubeFoundation;
+		};
+		2E7B88872AE709AD00B4099B /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2E7B88862AE709AD00B4099B /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

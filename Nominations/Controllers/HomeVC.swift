@@ -11,12 +11,16 @@ class HomeVC: UIViewController {
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		setupUI()
+		view.backgroundColor = .cubeLightGrey
+		
+		MainManager.registerUser { [weak self] in
+			DispatchQueue.main.async {
+				self?.setupUI()
+			}
+		}
 	}
 
 	private func setupUI() {
-		view.backgroundColor = .cubeLightGrey
-		
 		let scrollView = UIScrollView()
 		scrollView.translatesAutoresizingMaskIntoConstraints = false
 		
@@ -28,8 +32,14 @@ class HomeVC: UIViewController {
 		let nominationsHeader = NominationsHeaderView()
 		stackView.addArrangedSubview(nominationsHeader)
 		
-		let noNominationsView = NoNominationsView()
-		stackView.addArrangedSubview(noNominationsView)
+		if MainManager.isLoggedIn {
+			let noNominationsView = NoNominationsView()
+			stackView.addArrangedSubview(noNominationsView)
+		}
+		else {
+			let loginErrorView = LoginErrorView()
+			stackView.addArrangedSubview(loginErrorView)
+		}
 		
 		scrollView.addSubview(stackView)
 		NSLayoutConstraint.activate([
@@ -68,6 +78,7 @@ class HomeVC: UIViewController {
 		])
 		
 		let button = PrimaryButton(title: "Create new nomination")
+		button.isEnabled = MainManager.isLoggedIn
 		footer.addButton(button)
 	}
 }
