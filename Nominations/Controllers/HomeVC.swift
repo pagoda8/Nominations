@@ -13,7 +13,7 @@ class HomeVC: UIViewController {
 		super.viewDidLoad()
 		view.backgroundColor = .cubeLightGrey
 		
-		MainManager.registerUser { [weak self] in
+		MainManager.logInUser { [weak self] in
 			DispatchQueue.main.async {
 				self?.setupUI()
 			}

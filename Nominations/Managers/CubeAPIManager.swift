@@ -90,10 +90,16 @@ struct CubeAPIManager {
 		sendRequest(request: request, completion: completion)
 	}
 	
-	static func postRequestMultipart(endpoint: String, body: Data, completion: @escaping (Result<Data, Error>) -> Void) {
+	static func postRequestMultipart(endpoint: String, body: [String: String], completion: @escaping (Result<Data, Error>) -> Void) {
 		AF.upload(multipartFormData: { multipartFormData in
-			multipartFormData.append(body, withName: "")
-		}, to: baseURL + endpoint)
+			for entry in body {
+				guard let data = entry.value.data(using: .utf8) else {
+					completion(.failure(APIError.invalidData))
+					return
+				}
+				multipartFormData.append(data, withName: entry.key)
+			}
+		}, to: baseURL + endpoint, method: .post, headers: ["Content-Type": "multipart/form-data"])
 		.responseData { response in
 			if let error = response.error {
 				completion(.failure(error))
@@ -139,6 +145,7 @@ struct ErrorDataContainer: Decodable {
 enum APIError: Error {
 	case invalidURL
 	case noData
+	case invalidData
 	case responseError(String)
 	case httpError(statusCode: Int)
 	case invalidResponse
