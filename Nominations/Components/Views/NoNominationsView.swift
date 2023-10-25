@@ -40,8 +40,6 @@ class NoNominationsView: UIView {
 	}
 	
 	private func setup() {
-		backgroundColor = .cubeLightGrey
-		
 		addSubview(iconImageView)
 		NSLayoutConstraint.activate([
 			iconImageView.centerXAnchor.constraint(equalTo: centerXAnchor),

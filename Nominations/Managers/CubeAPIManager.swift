@@ -35,6 +35,9 @@ struct CubeAPIManager {
 		if let bearerToken = authToken {
 			request.addValue("Bearer \(bearerToken)", forHTTPHeaderField: "Authorization")
 		}
+		if method == "POST" {
+			request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+		}
 		
 		// Set the request body if applicable
 		request.httpBody = body
@@ -132,13 +135,6 @@ struct CubeAPIManager {
 			}
 		}
 	}
-}
-
-struct ErrorResponse: Decodable {
-	let data: ErrorDataContainer
-}
-struct ErrorDataContainer: Decodable {
-	let error: String
 }
 
 // Enum for API-related errors

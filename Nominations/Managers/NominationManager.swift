@@ -12,12 +12,6 @@ struct NominationManager {
 	private static var nominees: [Nominee]?
 	
 	static func setNominations(to nominations: [Nomination]?) {
-		/*let dateFormatter = DateFormatter()
-		dateFormatter.dateFormat = ""
-		
-		let sortedNominations = nominations.sorted { nomination1, nomination2 in
-			
-		} */
 		self.nominations = nominations
 	}
 	
@@ -38,6 +32,22 @@ struct NominationManager {
 	
 	static func getNominees() -> [Nominee]? {
 		return nominees
+	}
+	
+	static func getNominee(withID id: String) -> Nominee? {
+		guard let nominees = nominees else {
+			return nil
+		}
+		for nominee in nominees {
+			if nominee.nomineeID == id {
+				return nominee
+			}
+		}
+		return nil
+	}
+	
+	static func hasNominees() -> Bool {
+		return nominees != nil
 	}
 }
 

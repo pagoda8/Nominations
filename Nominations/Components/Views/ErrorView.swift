@@ -41,7 +41,6 @@ class ErrorView: UIView {
 	}
 	
 	private func setup() {
-		backgroundColor = .cubeLightGrey
 		setupText()
 		
 		addSubview(iconImageView)

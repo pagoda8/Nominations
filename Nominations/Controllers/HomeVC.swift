@@ -107,12 +107,11 @@ class HomeVC: UIViewController {
 		stackView.addArrangedSubview(nominationsHeader)
 		
 		if MainManager.isLoggedIn {
-			if let nominations = NominationManager.getNominations(), let nominees = NominationManager.getNominees() {
-				if !nominees.isEmpty {
-					print("I HAVE NOMINEES")
-				}
-				if !nominations.isEmpty {
-					print("I HAVE NOMINATIONS (\(nominations.count))")
+			if let nominationViews = NominationViewBuilder.createNominationViews() {
+				if !nominationViews.isEmpty {
+					for nominationView in nominationViews {
+						stackView.addArrangedSubview(nominationView)
+					}
 				}
 				else {
 					let noNominationsView = NoNominationsView()
@@ -128,6 +127,8 @@ class HomeVC: UIViewController {
 			let loginErrorView = ErrorView(type: .loginError)
 			stackView.addArrangedSubview(loginErrorView)
 		}
+		
+		stackView.layoutIfNeeded()
 	}
 	
 	private func clearStackView() {
