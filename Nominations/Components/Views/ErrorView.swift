@@ -4,10 +4,12 @@
 //
 //  Created by Wojtek on 23/10/2023.
 //
+//	View that informs that an error occured
 
 import UIKit
 
 class ErrorView: UIView {
+	
 	private var type: ErrorViewType?
 	
 	private var textLabel: UILabel = {
@@ -30,7 +32,8 @@ class ErrorView: UIView {
 		return imageView
 	}()
 
-	init(type: ErrorViewType) {
+	// Initialize the view with an optional error view type
+	init(type: ErrorViewType? = nil) {
 		super.init(frame: .zero)
 		self.type = type
 		setup()
@@ -40,15 +43,18 @@ class ErrorView: UIView {
 		fatalError("init(coder:) has not been implemented")
 	}
 	
+	// Setup view
 	private func setup() {
 		setupText()
 		
+		// Add and setup icon image view
 		addSubview(iconImageView)
 		NSLayoutConstraint.activate([
 			iconImageView.centerXAnchor.constraint(equalTo: centerXAnchor),
 			iconImageView.topAnchor.constraint(equalTo: topAnchor, constant: 70),
 		])
 		
+		// Add and setup text label
 		addSubview(textLabel)
 		NSLayoutConstraint.activate([
 			textLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 23),
@@ -58,6 +64,7 @@ class ErrorView: UIView {
 		])
 	}
 	
+	// Set the displayed text based on the error view type
 	private func setupText() {
 		switch type {
 		case .loginError:
@@ -70,6 +77,7 @@ class ErrorView: UIView {
 	}
 }
 
+// Variations of the error view
 enum ErrorViewType {
 	case loginError
 	case fetchError

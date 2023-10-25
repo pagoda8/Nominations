@@ -4,11 +4,14 @@
 //
 //  Created by Wojtek on 23/10/2023.
 //
+//	Wrapper for interacting with the Cube Academy API
 
 import Foundation
 
 struct MainManager {
 	
+	// User details
+	// Change if needed and use the registerUser / logInUser function in HomeVC accordingly
 	private static let userName = "Wojtek"
 	private static let email = "wojtek123@yahoo.com"
 	private static let password = "cube_academy"
@@ -17,6 +20,9 @@ struct MainManager {
 		return CubeAPIManager.isAuthorized
 	}
 	
+	// MARK: - Register
+	
+	// Registers a user with the API and establishes a secure connection
 	static func registerUser(completion: @escaping () -> Void) {
 		guard !isLoggedIn else {
 			completion()
@@ -33,6 +39,7 @@ struct MainManager {
 			switch result {
 			case .success(let data):
 				do {
+					// Decode and store the auth token from the API response
 					let response = try JSONDecoder().decode(LoginResponse.self, from: data)
 					let token = response.data.authToken
 					CubeAPIManager.setAuthToken(token)
@@ -48,6 +55,9 @@ struct MainManager {
 		}
 	}
 	
+	// MARK: - Login
+	
+	// Logs in a user and establishes a secure connection with API
 	static func logInUser(completion: @escaping () -> Void) {
 		guard !isLoggedIn else {
 			completion()
@@ -63,6 +73,7 @@ struct MainManager {
 			switch result {
 			case .success(let data):
 				do {
+					// Decode and store the auth token from the API response
 					let response = try JSONDecoder().decode(LoginResponse.self, from: data)
 					let token = response.data.authToken
 					CubeAPIManager.setAuthToken(token)
@@ -78,6 +89,9 @@ struct MainManager {
 		}
 	}
 	
+	// MARK: - Fetch nominations
+	
+	// Fetches user's submitted nominations from API
 	static func fetchNominations(completion: @escaping () -> Void) {
 		guard isLoggedIn else {
 			completion()
@@ -88,6 +102,7 @@ struct MainManager {
 			switch result {
 			case .success(let data):
 				do {
+					// Decode and store nominations from API response
 					let response = try JSONDecoder().decode(NominationsResponse.self, from: data)
 					let nominations = response.data
 					NominationManager.setNominations(to: nominations)
@@ -105,6 +120,9 @@ struct MainManager {
 		}
 	}
 	
+	// MARK: - Fetch nominees
+	
+	// Fetches all nominees from API
 	static func fetchNominees(completion: @escaping () -> Void) {
 		guard isLoggedIn else {
 			completion()
@@ -115,6 +133,7 @@ struct MainManager {
 			switch result {
 			case .success(let data):
 				do {
+					// Decode and store nominees from API response
 					let response = try JSONDecoder().decode(NomineesResponse.self, from: data)
 					let nominees = response.data
 					NominationManager.setNominees(to: nominees)
@@ -132,6 +151,9 @@ struct MainManager {
 		}
 	}
 	
+	// MARK: - Create nomination
+	
+	// Creates and submits a nomination using the API
 	static func createNomination(body: [String: String], completion: @escaping () -> Void) {
 		guard isLoggedIn else {
 			completion()
@@ -139,11 +161,13 @@ struct MainManager {
 		}
 		
 		do {
+			// Create JSON data from body dictionary
 			let jsonData = try JSONSerialization.data(withJSONObject: body)
 			CubeAPIManager.postRequest(endpoint: "nomination", body: jsonData) { result in
 				switch result {
 				case .success(let data):
 					do {
+						// Decode and store created nomination from API response
 						let response = try JSONDecoder().decode(NominationResponse.self, from: data)
 						let nomination = response.data
 						NominationManager.addNomination(nomination)

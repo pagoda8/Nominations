@@ -4,6 +4,7 @@
 //
 //  Created by Wojtek on 21/10/2023.
 //
+//	Defines font styles
 
 import Foundation
 import UIKit

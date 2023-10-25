@@ -4,6 +4,7 @@
 //
 //  Created by Wojtek on 22/10/2023.
 //
+//	View that informs that the user did not submit any nominations
 
 import UIKit
 
@@ -39,13 +40,16 @@ class NoNominationsView: UIView {
 		fatalError("init(coder:) has not been implemented")
 	}
 	
+	// Setup view
 	private func setup() {
+		// Add and setup icon image view
 		addSubview(iconImageView)
 		NSLayoutConstraint.activate([
 			iconImageView.centerXAnchor.constraint(equalTo: centerXAnchor),
 			iconImageView.topAnchor.constraint(equalTo: topAnchor, constant: 70),
 		])
 		
+		// Add and setup text label
 		addSubview(textLabel)
 		NSLayoutConstraint.activate([
 			textLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 23),
@@ -54,5 +58,4 @@ class NoNominationsView: UIView {
 			textLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -70)
 		])
 	}
-
 }

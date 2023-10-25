@@ -4,6 +4,7 @@
 //
 //  Created by Wojtek on 25/10/2023.
 //
+//	View that shows nomination's details
 
 import UIKit
 
@@ -17,6 +18,7 @@ class NominationView: UIView {
 	
 	private let padding: CGFloat = 23
 	
+	// Label showing nominee's full name
 	private var nameLabel: UILabel = {
 		let label = UILabel()
 		label.textAlignment = .left
@@ -28,6 +30,7 @@ class NominationView: UIView {
 		return label
 	}()
 
+	// Label showing reason of nomination
 	private var reasonLabel: UILabel = {
 		let label = UILabel()
 		label.textAlignment = .left
@@ -39,6 +42,7 @@ class NominationView: UIView {
 		return label
 	}()
 	
+	// vStack containing name label and reason label
 	private let vStack: UIStackView = {
 		let vStack = UIStackView()
 		vStack.axis = .vertical
@@ -48,6 +52,7 @@ class NominationView: UIView {
 		return vStack
 	}()
 	
+	// Horizontal line at the bottom of the view
 	private let spacerLine: UIView = {
 		let spacer = UIView()
 		spacer.backgroundColor = .cubeMidGrey
@@ -56,6 +61,7 @@ class NominationView: UIView {
 		return spacer
 	}()
 	
+	// Initialize view with nominee's name and nomination reason
 	init(nomineeName: String, reason: String) {
 		super.init(frame: .zero)
 		self.nomineeName = nomineeName
@@ -67,6 +73,7 @@ class NominationView: UIView {
 		fatalError("init(coder:) has not been implemented")
 	}
 	
+	// Update vStack's left & right constraints when device rotates
 	override func layoutSubviews() {
 		super.layoutSubviews()
 		
@@ -78,12 +85,15 @@ class NominationView: UIView {
 		trailingConstraint.constant = -inset - padding
 	}
 	
+	// Setup view
 	private func setup() {
 		setupLabels()
 		
+		// Add name and reason labels to vStack
 		vStack.addArrangedSubview(nameLabel)
 		vStack.addArrangedSubview(reasonLabel)
 		
+		// Add and setup vStack
 		addSubview(vStack)
 		vStackLeadingConstraint = vStack.leadingAnchor.constraint(equalTo: leadingAnchor, constant: padding)
 		vStackTrailingConstraint = vStack.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -padding)
@@ -93,6 +103,7 @@ class NominationView: UIView {
 			vStack.topAnchor.constraint(equalTo: topAnchor, constant: padding),
 		])
 		
+		// Add and setup spacer line
 		addSubview(spacerLine)
 		NSLayoutConstraint.activate([
 			spacerLine.topAnchor.constraint(equalTo: vStack.bottomAnchor, constant: padding),
@@ -102,9 +113,9 @@ class NominationView: UIView {
 		])
 	}
 	
+	// Set the text for name and reason labels
 	private func setupLabels() {
 		nameLabel.text = nomineeName
 		reasonLabel.text = reason
 	}
-
 }

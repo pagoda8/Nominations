@@ -4,6 +4,7 @@
 //
 //  Created by Wojtek on 22/10/2023.
 //
+//	View with "YOUR NOMINATIONS" title and a nice background
 
 import UIKit
 
@@ -13,7 +14,7 @@ class NominationsHeaderView: UIView {
 	private var titleLabelTrailingConstraint: NSLayoutConstraint?
 	
 	private let titlePadding: CGFloat = 23
-
+	
 	private let titleLabel: UILabel = {
 		let label = UILabel()
 		label.text = "Your Nominations".uppercased()
@@ -42,6 +43,7 @@ class NominationsHeaderView: UIView {
 		fatalError("init(coder:) has not been implemented")
 	}
 	
+	// Update title's left & right constraints when device rotates
 	override func layoutSubviews() {
 		super.layoutSubviews()
 		
@@ -53,10 +55,12 @@ class NominationsHeaderView: UIView {
 		trailingConstraint.constant = -inset - titlePadding
 	}
 	
+	// Setup view
 	private func setup() {
 		backgroundColor = .cubeGreen2
 		clipsToBounds = true
 		
+		// Add and setup background image view
 		addSubview(backgroundImageView)
 		NSLayoutConstraint.activate([
 			backgroundImageView.leadingAnchor.constraint(equalTo: leadingAnchor),
@@ -64,6 +68,7 @@ class NominationsHeaderView: UIView {
 			backgroundImageView.centerYAnchor.constraint(equalTo: centerYAnchor, constant: 140),
 		])
 		
+		// Add and setup title label
 		addSubview(titleLabel)
 		titleLabelLeadingConstraint = titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: titlePadding)
 		titleLabelTrailingConstraint = titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -titlePadding)
@@ -74,5 +79,4 @@ class NominationsHeaderView: UIView {
 			titleLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -titlePadding),
 		])
 	}
-
 }

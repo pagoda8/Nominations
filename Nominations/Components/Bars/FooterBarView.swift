@@ -4,11 +4,15 @@
 //
 //  Created by Wojtek on 22/10/2023.
 //
+//	Footer bar containing button(s)
 
 import UIKit
 
 class FooterBarView: UIView {
 	
+	private let padding: CGFloat = 23
+	
+	// hStack that holds button(s)
 	private let hStack: UIStackView = {
 		let hStack = UIStackView()
 		hStack.axis = .horizontal
@@ -16,8 +20,6 @@ class FooterBarView: UIView {
 		hStack.translatesAutoresizingMaskIntoConstraints = false
 		return hStack
 	}()
-	
-	private let padding: CGFloat = 23
 
 	init() {
 		super.init(frame: .zero)
@@ -28,10 +30,12 @@ class FooterBarView: UIView {
 		fatalError("init(coder:) has not been implemented")
 	}
 	
+	// Setup view
 	private func setup() {
 		backgroundColor = .cubeLightGrey
 		addShadow()
 		
+		// Add and setup hStack
 		addSubview(hStack)
 		NSLayoutConstraint.activate([
 			hStack.leadingAnchor.constraint(equalTo: leadingAnchor, constant: padding),
@@ -42,6 +46,7 @@ class FooterBarView: UIView {
 		])
 	}
 	
+	// Add shadow to footer bar
 	private func addShadow() {
 		layer.shadowColor = UIColor.shadowStrong.cgColor
 		layer.shadowOpacity = 1
@@ -49,6 +54,7 @@ class FooterBarView: UIView {
 		layer.shadowRadius = 10
 	}
 
+	// Add button to footer bar
 	func addButton(_ button: UIButton) {
 		hStack.addArrangedSubview(button)
 	}

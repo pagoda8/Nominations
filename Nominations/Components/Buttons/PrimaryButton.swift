@@ -4,6 +4,7 @@
 //
 //  Created by Wojtek on 22/10/2023.
 //
+//	Button used for primary actions
 
 import UIKit
 
@@ -12,6 +13,7 @@ class PrimaryButton: UIButton {
 	private var title: String = String()
 	private var actionHandler: (() -> Void)?
 	
+	// Update button's appearance when the isEnabled property is changed
 	override var isEnabled: Bool {
 		didSet {
 			super.isEnabled = isEnabled
@@ -19,8 +21,7 @@ class PrimaryButton: UIButton {
 		}
 	}
 	
-	// MARK: - Initialization
-	
+	// Initialize button with title
 	init(title: String) {
 		super.init(frame: .zero)
 		self.title = title.uppercased()
@@ -31,8 +32,7 @@ class PrimaryButton: UIButton {
 		fatalError("init(coder:) has not been implemented")
 	}
 	
-	// MARK: - Private
-	
+	// Setup button
 	private func setup() {
 		backgroundColor = .black
 		
@@ -45,18 +45,15 @@ class PrimaryButton: UIButton {
 		addTarget(self, action: #selector(buttonTapped(_:)), for: .touchUpInside)
 	}
 	
-	// MARK: - Action
-	
+	// When button is tapped
 	@objc private func buttonTapped(_ sender: UIButton) {
 		if isEnabled {
 			actionHandler?()
 		}
 	}
 	
-	// MARK: - Public
-	
+	// Set behaviour for tap action
 	func setActionHandler(_ handler: (() -> Void)?) {
 		actionHandler = handler
 	}
-
 }

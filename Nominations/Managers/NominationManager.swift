@@ -4,10 +4,12 @@
 //
 //  Created by Wojtek on 24/10/2023.
 //
+//	Stores nominations and nominees
 
 import Foundation
 
 struct NominationManager {
+	
 	private static var nominations: [Nomination]?
 	private static var nominees: [Nominee]?
 	

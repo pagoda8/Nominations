@@ -4,8 +4,11 @@
 //
 //  Created by Wojtek on 25/10/2023.
 //
+//	Defines models for JSON data returned from API
 
 import Foundation
+
+// MARK: - Error
 
 struct ErrorResponse: Decodable {
 	let data: ErrorDataContainer
@@ -14,12 +17,16 @@ struct ErrorDataContainer: Decodable {
 	let error: String
 }
 
+// MARK: - Login
+
 struct LoginResponse: Decodable {
 	let data: LoginDataContainer
 }
 struct LoginDataContainer: Decodable {
 	let authToken: String
 }
+
+// MARK: - Nominations
 
 struct NominationsResponse: Decodable {
 	let data: [NominationDataContainer]
@@ -44,6 +51,8 @@ struct NominationDataContainer: Decodable {
 		case closingDate = "closing_date"
 	}
 }
+
+// MARK: - Nominees
 
 struct NomineesResponse: Decodable {
 	let data: [NomineeDataContainer]
