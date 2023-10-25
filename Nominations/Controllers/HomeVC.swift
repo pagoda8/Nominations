@@ -8,38 +8,46 @@
 import UIKit
 
 class HomeVC: UIViewController {
+	
+	private let stackView: UIStackView = {
+		let stackView = UIStackView()
+		stackView.axis = .vertical
+		stackView.spacing = 0
+		stackView.translatesAutoresizingMaskIntoConstraints = false
+		return stackView
+	}()
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		view.backgroundColor = .cubeLightGrey
+		setup()
+	}
+	
+	private func setup() {
+		let dispatchGroup = DispatchGroup()
 		
-		MainManager.logInUser { [weak self] in
-			DispatchQueue.main.async {
-				self?.setupUI()
+		dispatchGroup.enter()
+		MainManager.logInUser {
+			dispatchGroup.enter()
+			MainManager.fetchNominations {
+				dispatchGroup.leave()
 			}
+			dispatchGroup.enter()
+			MainManager.fetchNominees {
+				dispatchGroup.leave()
+			}
+			dispatchGroup.leave()
+		}
+		
+		dispatchGroup.notify(queue: .main) { [weak self] in
+			self?.setupUI()
 		}
 	}
 
 	private func setupUI() {
 		let scrollView = UIScrollView()
+		scrollView.showsVerticalScrollIndicator = false
 		scrollView.translatesAutoresizingMaskIntoConstraints = false
-		
-		let stackView = UIStackView()
-		stackView.axis = .vertical
-		stackView.spacing = 0
-		stackView.translatesAutoresizingMaskIntoConstraints = false
-		
-		let nominationsHeader = NominationsHeaderView()
-		stackView.addArrangedSubview(nominationsHeader)
-		
-		if MainManager.isLoggedIn {
-			let noNominationsView = NoNominationsView()
-			stackView.addArrangedSubview(noNominationsView)
-		}
-		else {
-			let loginErrorView = LoginErrorView()
-			stackView.addArrangedSubview(loginErrorView)
-		}
 		
 		scrollView.addSubview(stackView)
 		NSLayoutConstraint.activate([
@@ -59,7 +67,6 @@ class HomeVC: UIViewController {
 		let header = HeaderBarView()
 		header.translatesAutoresizingMaskIntoConstraints = false
 		view.addSubview(header)
-		
 		NSLayoutConstraint.activate([
 			header.topAnchor.constraint(equalTo: view.topAnchor),
 			header.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -79,7 +86,75 @@ class HomeVC: UIViewController {
 		
 		let button = PrimaryButton(title: "Create new nomination")
 		button.isEnabled = MainManager.isLoggedIn
+		button.setActionHandler { [weak self] in
+			button.isEnabled = false
+			self?.createTestNomination() { [weak self] in
+				DispatchQueue.main.async {
+					self?.setupStackView()
+					button.isEnabled = true
+				}
+			}
+		}
 		footer.addButton(button)
+		
+		setupStackView()
+	}
+	
+	private func setupStackView() {
+		clearStackView()
+		
+		let nominationsHeader = NominationsHeaderView()
+		stackView.addArrangedSubview(nominationsHeader)
+		
+		if MainManager.isLoggedIn {
+			if let nominations = NominationManager.getNominations(), let nominees = NominationManager.getNominees() {
+				if !nominees.isEmpty {
+					print("I HAVE NOMINEES")
+				}
+				if !nominations.isEmpty {
+					print("I HAVE NOMINATIONS (\(nominations.count))")
+				}
+				else {
+					let noNominationsView = NoNominationsView()
+					stackView.addArrangedSubview(noNominationsView)
+				}
+			}
+			else {
+				let fetchErrorView = ErrorView(type: .fetchError)
+				stackView.addArrangedSubview(fetchErrorView)
+			}
+		}
+		else {
+			let loginErrorView = ErrorView(type: .loginError)
+			stackView.addArrangedSubview(loginErrorView)
+		}
+	}
+	
+	private func clearStackView() {
+		for subview in stackView.arrangedSubviews {
+			stackView.removeArrangedSubview(subview)
+			subview.removeFromSuperview()
+		}
+	}
+	
+	private func createTestNomination(completion: @escaping () -> Void) {
+		// Mock data for testing
+		guard let nominee = NominationManager.getNominees()?.randomElement() else {
+			completion()
+			return
+		}
+		let reason = ["Positive attitude", "Motivates others", "Great work ethic", "Always professional"].randomElement()!
+		let process = "very_fair"
+		
+		let body: [String: String] = [
+			"nominee_id": nominee.nomineeID,
+			"reason": reason,
+			"process": process,
+		]
+		
+		MainManager.createNomination(body: body) {
+			completion()
+		}
 	}
 }
 

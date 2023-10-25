@@ -9,8 +9,10 @@ import UIKit
 
 class NominationsHeaderView: UIView {
 	
-	private var textViewLeadingConstraint: NSLayoutConstraint?
-	private var textViewTrailingConstraint: NSLayoutConstraint?
+	private var titleLabelLeadingConstraint: NSLayoutConstraint?
+	private var titleLabelTrailingConstraint: NSLayoutConstraint?
+	
+	private let titlePadding: CGFloat = 23
 
 	private let titleLabel: UILabel = {
 		let label = UILabel()
@@ -43,12 +45,12 @@ class NominationsHeaderView: UIView {
 	override func layoutSubviews() {
 		super.layoutSubviews()
 		
-		guard let leadingConstraint = textViewLeadingConstraint, let trailingConstraint = textViewTrailingConstraint else {
+		guard let leadingConstraint = titleLabelLeadingConstraint, let trailingConstraint = titleLabelTrailingConstraint else {
 			return
 		}
 		let inset = safeAreaInsets.left
-		leadingConstraint.constant = inset + 23
-		trailingConstraint.constant = -inset - 23
+		leadingConstraint.constant = inset + titlePadding
+		trailingConstraint.constant = -inset - titlePadding
 	}
 	
 	private func setup() {
@@ -62,26 +64,14 @@ class NominationsHeaderView: UIView {
 			backgroundImageView.centerYAnchor.constraint(equalTo: centerYAnchor, constant: 140),
 		])
 		
-		let textView = UIView()
-		textView.translatesAutoresizingMaskIntoConstraints = false
-		addSubview(textView)
-		
-		textView.addSubview(titleLabel)
+		addSubview(titleLabel)
+		titleLabelLeadingConstraint = titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: titlePadding)
+		titleLabelTrailingConstraint = titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -titlePadding)
+		titleLabelLeadingConstraint?.isActive = true
+		titleLabelTrailingConstraint?.isActive = true
 		NSLayoutConstraint.activate([
-			titleLabel.leadingAnchor.constraint(equalTo: textView.leadingAnchor),
-			titleLabel.trailingAnchor.constraint(equalTo: textView.trailingAnchor),
-			titleLabel.topAnchor.constraint(equalTo: textView.topAnchor),
-			titleLabel.bottomAnchor.constraint(equalTo: textView.bottomAnchor),
-		])
-		
-		
-		textViewLeadingConstraint = textView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 23)
-		textViewTrailingConstraint = textView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -23)
-		textViewLeadingConstraint?.isActive = true
-		textViewTrailingConstraint?.isActive = true
-		NSLayoutConstraint.activate([
-			textView.topAnchor.constraint(equalTo: topAnchor, constant: 23),
-			textView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -23),
+			titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: titlePadding),
+			titleLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -titlePadding),
 		])
 	}
 

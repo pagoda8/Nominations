@@ -11,6 +11,9 @@ class HeaderBarView: UIView {
 	private var title: String?
 	private var contentViewTopConstraint: NSLayoutConstraint?
 	
+	private let topPadding: CGFloat = 8
+	private let padding: CGFloat = 20
+	
 	init(title: String? = nil) {
 		super.init(frame: .zero)
 		self.title = title
@@ -28,16 +31,13 @@ class HeaderBarView: UIView {
 			return
 		}
 		let topInset = safeAreaInsets.top
-		let padding: CGFloat = UIDevice.current.orientation.isPortrait ? 0 : 12
-		topConstraint.constant = topInset + padding + 8
+		let extraPadding: CGFloat = UIDevice.current.orientation.isPortrait ? 0 : 12
+		topConstraint.constant = topPadding + topInset + extraPadding
 	}
 	
 	private func setup() {
 		backgroundColor = .black
-		layer.shadowColor = UIColor.shadowStrong.cgColor
-		layer.shadowOpacity = 1
-		layer.shadowOffset = CGSize(width: 0, height: 2)
-		layer.shadowRadius = 10
+		addShadow()
 		
 		let contentView = UIView()
 		contentView.translatesAutoresizingMaskIntoConstraints = false
@@ -76,13 +76,20 @@ class HeaderBarView: UIView {
 			])
 		}
 		
-		self.contentViewTopConstraint = contentView.topAnchor.constraint(equalTo: topAnchor, constant: 8)
+		self.contentViewTopConstraint = contentView.topAnchor.constraint(equalTo: topAnchor, constant: topPadding)
 		self.contentViewTopConstraint?.isActive = true
 		NSLayoutConstraint.activate([
-			contentView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -20),
-			contentView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
-			contentView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
+			contentView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -padding),
+			contentView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: padding),
+			contentView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -padding),
 		])
+	}
+	
+	private func addShadow() {
+		layer.shadowColor = UIColor.shadowStrong.cgColor
+		layer.shadowOpacity = 1
+		layer.shadowOffset = CGSize(width: 0, height: 2)
+		layer.shadowRadius = 10
 	}
 	
 }

@@ -33,7 +33,7 @@ struct CubeAPIManager {
 		
 		// Add Bearer token to the authorization header
 		if let bearerToken = authToken {
-			request.addValue(bearerToken, forHTTPHeaderField: "bearerAuth")
+			request.addValue("Bearer \(bearerToken)", forHTTPHeaderField: "Authorization")
 		}
 		
 		// Set the request body if applicable

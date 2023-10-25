@@ -48,23 +48,12 @@ class NoNominationsView: UIView {
 			iconImageView.topAnchor.constraint(equalTo: topAnchor, constant: 70),
 		])
 		
-		let textView = UIView()
-		textView.translatesAutoresizingMaskIntoConstraints = false
-		addSubview(textView)
-		
-		textView.addSubview(textLabel)
+		addSubview(textLabel)
 		NSLayoutConstraint.activate([
-			textLabel.leadingAnchor.constraint(equalTo: textView.leadingAnchor),
-			textLabel.trailingAnchor.constraint(equalTo: textView.trailingAnchor),
-			textLabel.topAnchor.constraint(equalTo: textView.topAnchor),
-			textLabel.bottomAnchor.constraint(equalTo: textView.bottomAnchor),
-		])
-		
-		NSLayoutConstraint.activate([
-			textView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 23),
-			textView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -23),
-			textView.topAnchor.constraint(equalTo: iconImageView.bottomAnchor, constant: 40),
-			textView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -70)
+			textLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 23),
+			textLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -23),
+			textLabel.topAnchor.constraint(equalTo: iconImageView.bottomAnchor, constant: 40),
+			textLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -70)
 		])
 	}
 
