@@ -100,12 +100,12 @@ class HomeVC: UIViewController {
 		footer.addButton(button)
 		
 		// When button is tapped, disable it, create nomination, refresh stack view and re-enable button
-		button.setActionHandler { [weak self] in
-			button.isEnabled = false
-			self?.createTestNomination() { [weak self] in
+		button.setActionHandler { [weak self, weak button] in
+			button?.isEnabled = false
+			self?.createTestNomination() {
 				DispatchQueue.main.async {
 					self?.setupStackView()
-					button.isEnabled = true
+					button?.isEnabled = true
 				}
 			}
 		}
